@@ -6,9 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        #post {
+            border: 2px solid #000000;
+        }
+
+        #postHeader {
+            height: 40px;
+            display: flex;
+            border-bottom: 2px solid #000000;
+        }
+
+        #title {
+            font-size: 35px;
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
+        #postDate {
+            margin-right: 10px;
+            color: #646464
+        }
+
+        #postCreator {
+            color: #646464
+        }
+
+        #description {
+            max-height: 100px;
+            overflow: auto;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>Post Board</h1>
+    <div id="contents">
+        <div id="post">
+            <div id="postHeader">
+                <div id="title">Post Title</div>
+                <div id="postDate">11/12/25</div>
+                <div id="postCreator">Some Guy</div>
+            </div>
+            <div id="description">This is the contents of the post.</div>
+        </div>
+    </div>
 </body>
 
 </html>
