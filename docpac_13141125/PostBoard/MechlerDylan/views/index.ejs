@@ -7,34 +7,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
+        #posts {
+            max-height: 700px;
+            overflow: auto;
+        }
+
         #post {
             border: 2px solid #000000;
+            margin-bottom: 5px;
         }
 
         #postHeader {
-            height: 40px;
+            min-height: 40px;
+            max-height: 100px;
             display: flex;
             border-bottom: 2px solid #000000;
+            overflow: auto;
         }
 
         #title {
             font-size: 35px;
             margin-left: 5px;
             margin-right: 10px;
+            max-width: 1100px;
         }
 
         #postDate {
             margin-right: 10px;
-            color: #646464
+            margin-top: 20px;
+            color: #646464;
+            min-width: 100px;
         }
 
         #postCreator {
-            color: #646464
+            margin-top: 20px;
+            color: #646464;
+            min-width: 50px;
+            max-width: 100px;
         }
 
         #description {
+            padding: 5px;
             max-height: 100px;
+            min-height: 50px;
             overflow: auto;
+        }
+
+        #existingComments {
+            border-top: 2px dashed #000000;
+            padding: 5px;
+            overflow: auto;
+            max-height: 100px;
+            min-height: 50px;
+        }
+
+        #comment {
+            margin: 5px;
+            border: 1px solid #000000;
+        }
+
+        #commenter {
+            border-bottom: 1px solid #000000;
+            padding: 2px;
+        }
+
+        #commentContents {
+            padding: 2px;
+        }
+
+        #createPost {
+            display: inline-block;
+            text-align: center;
+            width: 1800px;
+            height: 15px;
+            padding: 5px;
+            border: 1px solid #000000;
+            border-radius: 7px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        #createPost:hover {
+            background-color: #e1e1e1;
+            transform: scale(1.05);
+        }
+
+        #edit {
+            margin: 3px;
+            margin-left: 10px;
+            width: 45px;
+            height: 45px;
+            font-size: 10px;
+            border-radius: 20px;
+            background-color: #ffffff;
+        }
+
+        #edit:hover {
+            background-color: #e1e1e1;
+        }
+
+        #delete {
+            margin: 3px;
+            width: 45px;
+            height: 45px;
+            font-size: 10px;
+            border-radius: 20px;
+            background-color: #ffffff;
+        }
+
+        #delete:hover {
+            background-color: #e1e1e1;
+        }
+
+        #createComment {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+            text-align: center;
+            width: 1800px;
+            height: 15px;
+            padding: 5px;
+            border: 1px solid #000000;
+            border-radius: 7px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        #createComment:hover {
+            background-color: rgb(225, 225, 225);
+            transform: scale(1.05);
+        }
+
+        #container {
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -42,15 +148,37 @@
 <body>
     <h1>Post Board</h1>
     <div id="contents">
-        <div id="post">
-            <div id="postHeader">
-                <div id="title">Post Title</div>
-                <div id="postDate">11/12/25</div>
-                <div id="postCreator">Some Guy</div>
+        <div id="posts">
+            <div id="post">
+                <div id="postHeader">
+                    <div id="title">Post Title</div>
+                    <div id="postDate">11/12/25</div>
+                    <div id="postCreator">Some Guy</div>
+                    <button id="edit">Edit</button>
+                    <button id="delete">Delete</button>
+                </div>
+                <div id="description">This is the contents of the post.</div>
+                <div id="comments">
+                    <div id="existingComments">
+                        <div id="comment">
+                            <div id="commenter">Some Other Guy</div>
+                            <div id="commentContents">Comment</div>
+                        </div>
+                    </div>
+                    <div id="container"><a href="/comment" id="createComment">Create Comment</a></div>
+                </div>
             </div>
-            <div id="description">This is the contents of the post.</div>
         </div>
+        <div id="container"><a id="createPost" href="/post">Create Post</a></div>
     </div>
 </body>
+
+<script>
+    var date = new Date()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var year = date.getFullYear()
+    document.getElementById("postDate").innerText = month + "-" + day + "-" + year
+</script>
 
 </html>

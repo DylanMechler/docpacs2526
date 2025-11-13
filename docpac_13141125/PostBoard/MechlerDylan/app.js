@@ -31,7 +31,15 @@ function isAuthenticated(req, res, next) {
 };
 
 app.get('/', isAuthenticated, (req, res) => {
-        res.render('index.ejs', {user : req.session.user})
+        res.render('index.ejs')
+});
+
+app.get('/post', isAuthenticated, (req, res) => {
+    res.render('post.ejs')
+});
+
+app.get('/comment', isAuthenticated, (req, res) => {
+    res.render('comment.ejs')
 });
 
 app.get('/login', (req, res) => {
