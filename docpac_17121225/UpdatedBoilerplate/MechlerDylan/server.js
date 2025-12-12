@@ -13,6 +13,19 @@ app.use(express.static('public'));
 //from env
 const PORT = process.env.PORT || 3000;
 const SESSION_SECRET = process.env.SESSION_SECRET;
-const AUTH_URL = process.env.AUTH_URL || 'http://localhost:420';
-const THIS_URL = process.env.THIS_URL || 'http://localhost:3000/login';
-const API_KEY = process.env.API_KEY || 'your_api_key_here';
+const FORMBAR_CLIENT_ID = process.env.FORMBAR_CLIENT_ID
+const FORMBAR_CLIENT_SECRET = process.env.FORMBAR_CLIENT_SECRET
+const FORMBAR_REDIRECT_URI = process.env.FORMBAR_REDIRECT_URI
+const DATBASE_FILE = process.env.DATABSE_FILE
+
+app.get('/', (req, res) => {
+    res.render('home.ejs');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login.ejs');
+});
+
+app.listen(PORT, () => {
+    console.log("Started HTTP Server on port 3000");
+});
