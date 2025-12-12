@@ -9,8 +9,8 @@ function slideSwitch() {
 
     current.classList.remove('active');
     next.classList.add('active');
+}
 
     document.addEventListener('DOMContentLoaded', function() {
         setInterval(slideSwitch, 2000);
     })
-}
