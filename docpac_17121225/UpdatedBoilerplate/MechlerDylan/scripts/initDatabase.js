@@ -1,10 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
+const logger = require('../modules/logger');
 
 const db = new sqlite3.Database('data/database.sqlite', (err) => {
     if (err) {
-        console.error(err.message);
+        logger.error(`Error Connecting To Database: ${err.message}`);
     } else {
-        console.log('Created Database Successfully');
+        logger.info('Connected To Database');
     }
 });
 
@@ -16,11 +17,17 @@ db.run(`CREATE TABLE "users" (
 	"createdAt"	INTEGER,
 	"updatedAt"	INTEGER,
 	PRIMARY KEY("id" AUTOINCREMENT)
-)`), (err) => {
+)`, (err) => {
     if (err) {
-        console.error("Error Creating Users Table:", err.message);
+        logger.error(`Error Creating Users Table: ${err.message}`);
     } else {
-        console.log("Users Table Created Successfully.");
+        logger.info("Users Table Created Successfully");
     }
-    db.close();
-}
+    db.close((err) => {
+        if (err) {
+            logger.error(`Error Closing Database: ${err.message}`);
+        } else {
+            logger.info("Database Connection Closed");
+        }
+    });
+});
