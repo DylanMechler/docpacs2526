@@ -29,10 +29,20 @@ app.get('/login', (req, res) => {
     res.render('login.ejs');
 });
 
+app.get('/profile', (req, res) => {
+    logger.info("Rendering Profile Page")
+    res.render('profile.ejs');
+});
+
+app.get('/sockets', (req, res) => {
+    logger.info("Rendering Sockets Page")
+    res.render('sockets.ejs');
+});
+
 app.listen(PORT, (err) => {
     if (err) {
         logger.error(`Error Starting HTTP Server: ${err.message}`)
     } else {
-        logger.info(`Started HTTP Server on Port: ${PORT}`);
+        logger.info(`Started HTTP Server on Port ${PORT}`);
     }
 });
