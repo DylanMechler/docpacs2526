@@ -1,0 +1,1 @@
+Session data stored in same file as app database

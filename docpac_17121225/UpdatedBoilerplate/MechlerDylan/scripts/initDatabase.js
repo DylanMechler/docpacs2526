@@ -13,7 +13,7 @@ db.run(`CREATE TABLE "users" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"username"	TEXT NOT NULL UNIQUE,
 	"passwordHash"	TEXT NOT NULL,
-	"formbarID"	INTEGER NOT NULL UNIQUE,
+	"formbarID"	INTEGER UNIQUE,
 	"createdAt"	INTEGER,
 	"updatedAt"	INTEGER,
 	PRIMARY KEY("id" AUTOINCREMENT)

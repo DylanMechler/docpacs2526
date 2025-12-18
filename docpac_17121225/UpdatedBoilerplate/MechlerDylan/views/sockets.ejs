@@ -1,2 +1,22 @@
 <%- include('./partials/header.ejs') %>
+<body>
+    <div id="content">
+        <div id="joinRoom">
+            <div>Enter Room Code:</div>
+            <form id="roomCodeForm">
+                <input type="text" id="roomCode" name="roomCode" required>
+            </form>
+        </div>
+        <div id="chat">
+            <div id="roomDisplay">Room: None</div>
+            <div id="messages">
+                <div id="message">Username: message Message MEssage MESsage MESSage MESSAge MESSAGe MESSAGE</div>
+            </div>
+            <form id="messageForm">
+                <input type="text" id="messageInput" autocomplete="off" placeholder="Type Message Here..." required>
+                <button type="submit" id="sendMessage">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
 <%- include('./partials/footer.ejs') %>

@@ -6,10 +6,14 @@ const session = require('express-session');
 const { io } = require('socket.io');
 const sqlite3 = require('sqlite3').verbose();
 const logger = require('./modules/logger');
+const sessionMiddleware = require('./middleware/session');
 
 //express setup
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+//session setup
+app.use(sessionMiddleware);
 
 //from env
 const PORT = process.env.PORT || 3000;
@@ -39,6 +43,7 @@ app.get('/sockets', (req, res) => {
     res.render('sockets.ejs');
 });
 
+//start server
 app.listen(PORT, (err) => {
     if (err) {
         logger.error(`Error Starting HTTP Server: ${err.message}`)
