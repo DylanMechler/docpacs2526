@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const sqlite = require('sqlite3').verbose();
+const comparePassword = require('./passwordHashing').comparePassword;
+const logger = require('../logger.js')
 const db = new sqlite.Database('./data/database.sqlite', (err) => {
     if (err) {
-        console.error('Error connecting to database:', err);
+        logger.error('Error connecting to database:', err);
     } else {
-        console.log('Connected to database')
+        logger.info('Connected to database')
     }
 });
 
@@ -15,9 +17,14 @@ app.post('/login', (req, res) => {
 
     db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
         if (err) {
-            console.error("Database error: ", err)
+            logger.error("Database error: ", err)
         } else if (row) {
-            res.redirect('/home?user=' + username)
+            let passwordCheck = comparePassword(password, row.passwordHash);
+            if (passwordCheck) {
+                logger.info(`User ${username} Logged In Successfully`);
+            } else {
+                logger.warn('Invalid login attempt')
+            }
         }
-    })
-})
+    });
+});

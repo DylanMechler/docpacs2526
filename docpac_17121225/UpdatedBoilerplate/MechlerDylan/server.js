@@ -4,9 +4,10 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const { io } = require('socket.io');
-const sqlite3 = require('sqlite3').verbose();
+const sqlite = require('sqlite3').verbose();
 const logger = require('./modules/logger');
 const sessionMiddleware = require('./middleware/session');
+const formbarRedirect = require('./modules/auth/formbarAuth').formbarRedirect;
 
 //express setup
 app.set('view engine', 'ejs');
@@ -41,6 +42,10 @@ app.get('/profile', (req, res) => {
 app.get('/sockets', (req, res) => {
     logger.info("Rendering Sockets Page")
     res.render('sockets.ejs');
+});
+
+app.get('/formbarOauth', (req, res) => {
+    formbarRedirect(req, res);
 });
 
 //start server

@@ -12,10 +12,9 @@ const db = new sqlite3.Database('data/database.sqlite', (err) => {
 db.run(`CREATE TABLE "users" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"username"	TEXT NOT NULL UNIQUE,
-	"passwordHash"	TEXT NOT NULL,
+	"passwordHash"	TEXT,
 	"formbarID"	INTEGER UNIQUE,
-	"createdAt"	INTEGER,
-	"updatedAt"	INTEGER,
+	"createdAt"	DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY("id" AUTOINCREMENT)
 )`, (err) => {
     if (err) {
