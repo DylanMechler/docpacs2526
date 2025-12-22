@@ -14,7 +14,6 @@ const db = new sqlite.Database('./data/database.sqlite', (err) => {
 app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
     db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
         if (err) {
             logger.error("Database error: ", err)
@@ -22,6 +21,9 @@ app.post('/login', (req, res) => {
             let passwordCheck = comparePassword(password, row.passwordHash);
             if (passwordCheck) {
                 logger.info(`User ${username} Logged In Successfully`);
+                req.session.user = username;
+                req.session.id = row.id;
+                res.redirect('/');
             } else {
                 logger.warn('Invalid login attempt')
             }
