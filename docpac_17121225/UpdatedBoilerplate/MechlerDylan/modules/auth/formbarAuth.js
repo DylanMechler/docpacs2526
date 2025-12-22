@@ -23,7 +23,9 @@ function formbarRedirect(req, res) {
         req.session.user = tokenData.displayName;
         req.session.id = tokenData.id;
         db.run('INSERT OR IGNORE INTO users (username, formbarID) VALUES (?, ?)', [tokenData.displayName, tokenData.id], function (err) {
-            
+            if (err) {
+                logger.error('Database Error:', err.message)
+            }
         });
         res.redirect('/');
     } else {
